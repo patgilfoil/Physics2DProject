@@ -25,3 +25,15 @@ void Plane::makeGizmo() {
 	glm::vec2 end = centerPoint - (parallel * lineSegmentLength);
 	aie::Gizmos::add2DLine(start, end, colour);
 }
+
+void Plane::resolveCollision(RigidBody* other, glm::vec2 contact)
+{
+	glm::vec2 relativeVelocity = other->getVelocity();
+
+	float elasticity = 1;
+	float j = glm::dot(-(1 + elasticity) * (relativeVelocity), m_normal) / (1 / other->getMass());
+
+	glm::vec2 force = m_normal * j;
+
+	other->applyForce(force, contact - other->getPosition());
+}

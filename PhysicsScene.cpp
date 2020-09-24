@@ -115,7 +115,8 @@ bool PhysicsScene::sphere2Plane(PhysicsObject* object1, PhysicsObject* object2) 
 
 		sphereToPlaneDistance -= sphere->getRadius();
 		if (sphereToPlaneDistance <= 0) {
-			sphere->applyForce(collisionNormal * sphere->getMass());
+			glm::vec2 contact = sphere->getPosition() - (collisionNormal * sphere->getRadius());
+			plane->resolveCollision(sphere, contact);
 			return true;
 		}
 	}
