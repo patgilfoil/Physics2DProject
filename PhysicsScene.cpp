@@ -15,10 +15,16 @@ PhysicsScene::~PhysicsScene()
 	}
 }
 
+/**
+* Adds an actor to the scene
+*/
 void PhysicsScene::addActor(PhysicsObject* actor) {
 	m_actors.push_back(actor);
 }
 
+/**
+* Remove an actor from the scene
+*/
 void PhysicsScene::removeActor(PhysicsObject* actor) {
 	for (auto i = m_actors.begin(); i < m_actors.end(); i++) {
 		if (*i == actor) {
@@ -27,6 +33,9 @@ void PhysicsScene::removeActor(PhysicsObject* actor) {
 	}
 }
 
+/**
+* Update checks for changes to the scene
+*/
 void PhysicsScene::update(float deltaTime)
 {
 	static std::list<PhysicsObject*> dirty;
@@ -46,6 +55,9 @@ void PhysicsScene::update(float deltaTime)
 	}
 }
 
+/**
+* Updates associated "gizmo" objects when drawing by calling the makeGizmo() function
+*/
 void PhysicsScene::updateGizmos()
 {
 	for (auto pActor : m_actors) {
@@ -53,6 +65,9 @@ void PhysicsScene::updateGizmos()
 	}
 }
 
+/**
+* Anything set under debug() function is ran when this is called
+*/
 void PhysicsScene::debugScene() {
 	for (auto actor : m_actors) {
 		actor->debug();
@@ -66,6 +81,9 @@ static fn collisionFunctionArray[] = {
 	PhysicsScene::sphere2Plane, PhysicsScene::sphere2Sphere,
 };
 
+/**
+* Checks for collision between specific objects by using ShapeIDs and math to call a function from the collision function array
+*/
 void PhysicsScene::checkForCollision() {
 	int actorCount = m_actors.size();
 

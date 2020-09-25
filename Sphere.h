@@ -13,7 +13,13 @@ public:
 	glm::vec4 getColor() { return m_color; }
 
 protected:
+	/**
+	* Sphere radius
+	*/
 	float m_radius;
-	glm::vec4 m_color;
+	/**
+	* Color
+	*/
+	glm::vec4 m_color; 
 };
 

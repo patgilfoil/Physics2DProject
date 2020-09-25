@@ -13,6 +13,9 @@ Plane::Plane(glm::vec2 normal, float distanceToOrigin) : PhysicsObject(PLANE)
 	m_distanceToOrigin = distanceToOrigin;
 }
 
+/**
+* Makes a "gizmo" that draws to the window space
+*/
 void Plane::makeGizmo() {
 	float lineSegmentLength = 300;
 	glm::vec2 planeNormal = glm::normalize(m_normal);
@@ -26,6 +29,9 @@ void Plane::makeGizmo() {
 	aie::Gizmos::add2DLine(start, end, colour);
 }
 
+/**
+* Handles collision for the other object that makes contact with the plane
+*/
 void Plane::resolveCollision(RigidBody* other, glm::vec2 contact)
 {
 	glm::vec2 relativeVelocity = other->getVelocity();

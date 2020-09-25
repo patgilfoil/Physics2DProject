@@ -12,7 +12,6 @@ public:
 	void applyForce(glm::vec2 force, glm::vec2 pos);
 
 	virtual bool checkCollision(PhysicsObject* pOther) = 0;
-	void resolveCollision(RigidBody* other, glm::vec2 contact, glm::vec2* collisionNormal = nullptr);
 
 	glm::vec2 getPosition() { return m_position; }
 	glm::vec2 getVelocity() { return m_velocity; }
@@ -27,11 +26,29 @@ public:
 	void setElasticity(float value) { m_elasticity = value; }
 
 protected:
+	/**
+	* Object position
+	*/
 	glm::vec2 m_position;
+	/**
+	* Object velocity
+	*/
 	glm::vec2 m_velocity;
+	/**
+	* Object mass
+	*/
 	float m_mass;
+	/**
+	* Object angular velocity
+	*/
 	float m_angularVelocity;
+	/**
+	* Object elasticity, defaults to 1.0
+	*/
 	float m_elasticity = 1.0f;
+	/**
+	* Helps solve angular velocity
+	*/
 	float m_moment;
 };
 

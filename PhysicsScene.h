@@ -8,6 +8,7 @@ public:
 	PhysicsScene();
 	~PhysicsScene();
 
+	
 	void addActor(PhysicsObject* actor);
 	void removeActor(PhysicsObject* actor);
 	void update(float deltaTime);
@@ -28,8 +29,17 @@ public:
 	static bool sphere2Sphere(PhysicsObject*, PhysicsObject*);
 
 private:
+	/**
+	* The scene's gravity values, vector2 means it supports upside down/sideways gravity
+	*/
 	glm::vec2 m_gravity;
+	/**
+	* Timestep is what each fixedUpdate is dependent on, essentially being its derivative of deltaTime
+	*/
 	float m_timeStep;
+	/**
+	* All the actors in the scene
+	*/
 	std::vector<PhysicsObject*> m_actors;
 };
 

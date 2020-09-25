@@ -1,13 +1,18 @@
 #pragma once
 #include <glm/ext.hpp>
 
+/**
+* ShapeType is used to determine the function used to solve collision when two objects collide
+*/
 enum ShapeType {
 	PLANE = 0,
 	SPHERE,
-	BOX,
 	SHAPE_COUNT
 };
 
+/**
+* PhysicsObject serves as the baseline for all objects that resolve collision
+*/
 class PhysicsObject {
 protected:
 	PhysicsObject(ShapeType shapeID) : m_shapeID(shapeID) {}

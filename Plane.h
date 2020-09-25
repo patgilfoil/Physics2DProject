@@ -17,6 +17,12 @@ public:
 	float getDistance() { return m_distanceToOrigin; }
 
 protected:
-	glm::vec2 m_normal;
+	/**
+	* Plane normal, essentially solves rotation
+	*/
+	glm::vec2 m_normal; 
+	/**
+	* Distance from the origin
+	*/
 	float m_distanceToOrigin;
 };
